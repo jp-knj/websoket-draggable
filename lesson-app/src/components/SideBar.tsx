@@ -4,7 +4,6 @@ const SideBar = () => {
     if(width <= 768){
         return null
     }
-
-    return <div className="sidebar"></div>
+    return <div className="sidebar">sidebar</div>
 }
 export default SideBar
