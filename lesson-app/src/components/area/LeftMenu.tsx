@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 import { getCategories } from "../../services/DataService";
 import Category from "../../models/Category";
-import "./LeftMenu.css";
+// import "./LeftMenu.css";
 
 const LeftMenu = () => {
     const { width } = useWindowDimensions();

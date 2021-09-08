@@ -3,7 +3,7 @@ import './App.css';
 
 import Nav from "./components/Nav"
 import SideBar from "./components/SideBar";
-import LeftMenu from "./components/LeftMenu";
+import LeftMenu from "./components/area/LeftMenu";
 import Main from "./components/Main"
 import RightMenu from "./components/RightMenu";
 
