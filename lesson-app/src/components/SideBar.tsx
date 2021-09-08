@@ -1,4 +1,10 @@
+import {useWindowDimensions} from "../hooks/useWindowDimensions"
 const SideBar = () => {
-    return <div className="sidebar">sidebar</div>
+    const { width } = useWindowDimensions()
+    if(width <= 768){
+        return null
+    }
+
+    return <div className="sidebar"></div>
 }
 export default SideBar

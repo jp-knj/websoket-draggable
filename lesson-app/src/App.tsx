@@ -4,7 +4,7 @@ import './App.css';
 import Nav from "./components/Nav"
 import SideBar from "./components/SideBar";
 import LeftMenu from "./components/LeftMenu";
-import Content from "./components/Nav"
+import Main from "./components/Main"
 import RightMenu from "./components/RightMenu";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
         <Nav />
         <SideBar />
         <LeftMenu />
-        <Content/>
+        <Main />
         <RightMenu />
     </div>
   );
