@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 import Nav from "./components/Nav"
-import SideBar from "./components/SideBar";
+import SideBar from "./components/area/sidebar/SideBar";
 import LeftMenu from "./components/area/LeftMenu";
 import Main from "./components/Main"
 import RightMenu from "./components/RightMenu";
