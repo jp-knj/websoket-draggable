@@ -1,8 +1,8 @@
 import React, { FC, useReducer, useEffect } from "react";
 import ReactModal from "react-modal";
 import ModalProps from "../types/ModalProps";
-// import userReducer from "./common/UserReducer";
-// import { allowSubmit } from "./common/Helpers";
+import userReducer from "./common/UserReducer";
+import { allowSubmit } from "./common/Helpers";
 import { useDispatch } from "react-redux";
 import { UserProfileSetType } from "../../store/user/Reducer";
 

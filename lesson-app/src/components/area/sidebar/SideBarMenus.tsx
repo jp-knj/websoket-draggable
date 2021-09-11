@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 // import Registration from "../../auth/Registration";
 import "./SideBarMenus.css";
-// import Login from "../../auth/Login";
+import Login from "../../auth/Login";
 // import Logout from "../../auth/Logout";
 import { Link } from "react-router-dom";
 
@@ -46,10 +46,10 @@ const SideBarMenus = () => {
                     <span onClick={onClickToggleRegister} className="menu-name">
             register
           </span>
-                    <Registration
-                        isOpen={showRegister}
-                        onClickToggle={onClickToggleRegister}
-                    />
+                    {/*<Registration*/}
+                    {/*    isOpen={showRegister}*/}
+                    {/*    onClickToggle={onClickToggleRegister}*/}
+                    {/*/>*/}
                 </li>
                 <li>
                     <FontAwesomeIcon icon={faSignInAlt} />
@@ -63,7 +63,7 @@ const SideBarMenus = () => {
                     <span onClick={onClickToggleLogout} className="menu-name">
             logout
           </span>
-                    <Logout isOpen={showLogout} onClickToggle={onClickToggleLogout} />
+                    {/*<Logout isOpen={showLogout} onClickToggle={onClickToggleLogout} />*/}
                 </li>
             </ul>
         </React.Fragment>
