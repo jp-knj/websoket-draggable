@@ -1,4 +1,5 @@
 import React from 'react';
+import Login from './Login';
 import CreateLink from './CreateLink';
 import Header from './Header';
 import LinkList from './LinkList';
@@ -16,6 +17,7 @@ const App = () => {
             path="/create"
             component={CreateLink}
           />
+          <Route exact path="/login" component={Login} />
         </Switch>
       </div>
     </div>

@@ -9,8 +9,10 @@ import {
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { AUTH_TOKEN } from '../constants';
 import './styles/index.css';
 import App from './components/App';
+import { setContext } from '@apollo/client/link/context';
 import reportWebVitals from './reportWebVitals';
 
 // create httpLink for connecting apolloclient, graphql server will be running on 'http://localhost:4000'
@@ -20,8 +22,18 @@ const httpLink = createHttpLink({
 
 // passing httpLink & InmemoryCache.
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache()
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem(AUTH_TOKEN);
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : ''
+    }
+  };
 });
 
 // passed the data as a prop.
