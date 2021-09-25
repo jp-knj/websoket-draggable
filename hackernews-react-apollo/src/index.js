@@ -23,6 +23,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+// passed the data as a prop.
 ReactDOM.render(
    <ApolloProvider client={client}>
     <App />
