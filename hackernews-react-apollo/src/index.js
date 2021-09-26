@@ -1,5 +1,6 @@
 // import @apollo/client
 import {
+  split,
   ApolloProvider,
   ApolloClient,
   createHttpLink,
@@ -13,7 +14,36 @@ import { AUTH_TOKEN } from './constants';
 import './styles/index.css';
 import App from './components/App';
 import { setContext } from '@apollo/client/link/context';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { getMainDefinition } from '@apllo/client/utilities';
 import reportWebVitals from './reportWebVitals';
+
+const wsLink = new WebSocketLink({
+  uri: `ws://localhost:4000/graphql`,
+  options: {
+    reconnect: true,
+    connectionParams: {
+      authToken: localStorage.getItem(AUTH_TOKEN)
+    }
+  }
+});
+
+const link = split(
+  ({ query }) => {
+    const { kind, operation } = getMainDefinition(query);
+    return (
+      kind === 'OperationDefinition' &&
+      operation === 'subscription'
+    );
+  },
+  wsLink,
+  authLink.concat(httpLink)
+);
+
+const client = new ApolloClient({
+  link,
+  cache: new InMemoryCache()
+});
 
 // create httpLink for connecting apolloclient, graphql server will be running on 'http://localhost:4000'
 const httpLink = createHttpLink({
@@ -28,12 +58,6 @@ const authLink = setContext((_, { headers }) => {
       authorization: token ? `Bearer ${token}` : ''
     }
   };
-});
-
-// passing httpLink & InmemoryCache.
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
 });
 
 // passed the data as a prop.
