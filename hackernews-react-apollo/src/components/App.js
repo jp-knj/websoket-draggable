@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './Login';
+import Search from './Search'
 import CreateLink from './CreateLink';
 import Header from './Header';
 import LinkList from './LinkList';
@@ -18,6 +19,7 @@ const App = () => {
             component={CreateLink}
           />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/search" component={Search} />
         </Switch>
       </div>
     </div>
