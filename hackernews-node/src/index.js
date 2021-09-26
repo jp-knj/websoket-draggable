@@ -1,6 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const { ApolloServer } = require('apollo-server');
+const Subscription = require('./resolvers/Subscription')
+const Query = require('./resolvers/Query')
+const Mutation = require('./resolvers/Mutation')
+const User = require('./resolvers/User')
+const Link = require('./resolvers/Link')
 
 let links = [{
   id: 'link-0',
@@ -9,24 +14,11 @@ let links = [{
 }]
 
 const resolvers = {
-  Query: {
-    info: () => `This is the API of a Hackernews Clone`,
-    feed: () => links,
-  },
-  Mutation: {
-    post: (parent, args) => {
-
-    let idCount = links.length
-
-       const link = {
-        id: `link-${idCount++}`,
-        description: args.description,
-        url: args.url,
-      }
-      links.push(link)
-      return link
-    }
-  },
+  Query,
+  Mutation,
+  Subscription,
+  User,
+  Link,
 }
 
 const server = new ApolloServer({
@@ -35,7 +27,18 @@ const server = new ApolloServer({
     'utf8'
   ),
   resolvers,
-})
+  context: ({ req }) => {
+    return {
+      ...req,
+      prisma,
+      pubsub,
+      userId:
+        req && req.headers.authorization
+          ? getUserId(req)
+          : null
+    };
+  }
+});
 
 server
   .listen()
