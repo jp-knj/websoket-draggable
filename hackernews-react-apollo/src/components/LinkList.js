@@ -14,6 +14,7 @@ export const FEED_QUERY = gql`
       id
       links {
         id
+        createdAt
         url
         description
         postedBy {
@@ -26,7 +27,6 @@ export const FEED_QUERY = gql`
             id
           }
         }
-        createdAt
       }
       count
     }
